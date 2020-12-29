@@ -18,14 +18,16 @@ jobs:
     # so lock this version down. If this needs to change, I also
     # need to change the FROM image in the Dockerfiles
     runs-on: windows-2019
-    container: silentj/libretro-docker:retroarch-uwp
+    #container: silentj/libretro-docker:retroarch-uwp
 
     steps:
     - uses: actions/checkout@v2
 
-#    - 
-#      name: Add MSBuild to PATH
-#      uses: microsoft/setup-msbuild@v1
+    - 
+      name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v1
+      with:
+        vs-version: '[15,16)'
 
 #    - 
 #      name: Restore NuGet packages
@@ -38,3 +40,11 @@ jobs:
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} ${{env.SOLUTION_FILE_PATH}}
+
+    # Upload the artifact
+    # https://medium.com/@two06/building-tooling-with-github-actions-59401648e61d
+    # — 
+    #   uses: actions/upload-artifact@master
+    #   with:
+    #   name: Seatbelt
+    #   path: Seatbelt\bin\Debug\Seatbelt.exe

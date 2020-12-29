@@ -14,25 +14,19 @@ env:
 
 jobs:
   build:
-    # The Dockerfile must run on the same OS version as it builds
-    # so lock this version down. If this needs to change, I also
-    # need to change the FROM image in the Dockerfiles
-    runs-on: windows-2019
-    #container: silentj/libretro-docker:retroarch-uwp
+    # windows-2016 has VS 2017 installed (which the UWP solution requires)
+    # Currently, this has the packages I need: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md
+    # Need to keep an eye on this issue to see when/if they kill the windows-2016 image: https://github.com/actions/virtual-environments/issues/68
+    runs-on: windows-2016
 
     steps:
-    - uses: actions/checkout@v2
+    - 
+      name: Checkout the source code
+      uses: actions/checkout@v2
 
     - 
       name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1
-      with:
-        vs-version: '[15,16)'
-
-#    - 
-#      name: Restore NuGet packages
-#      working-directory: ${{env.GITHUB_WORKSPACE}}
-#      run: nuget restore ${{env.SOLUTION_FILE_PATH}}
 
     - 
       name: Build

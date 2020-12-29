@@ -234,14 +234,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <PackageCertificateKeyFile>RetroArch-msvc2017-UWP_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>RetroArch-msvc2017-UWP_StoreKey.pfx</PackageCertificateKeyFile>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>x86|x64|arm|arm64</AppxBundlePlatforms>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
     <AppxBundle>Always</AppxBundle>
-    <PackageCertificateThumbprint>9B43DF279626773ACE2F840BB021FE212ABD871C</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>3D755E28E25D62D76E86FCBA2065F761396A8DF7</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
@@ -579,7 +579,7 @@
       <DeploymentContent>true</DeploymentContent>
       <Link>%(Filename)%(Extension)</Link>
     </None>
-    <None Include="RetroArch-msvc2017-UWP_TemporaryKey.pfx" />
+    <None Include="RetroArch-msvc2017-UWP_StoreKey.pfx" />
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='DebugANGLE|x64'">
     <None Include="ANGLE\$(Platform)\*.dll">
@@ -628,6 +628,9 @@
       <DeploymentContent>true</DeploymentContent>
       <Link>%(Filename)%(Extension)</Link>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

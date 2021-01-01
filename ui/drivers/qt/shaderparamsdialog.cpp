@@ -166,7 +166,7 @@ void ShaderParamsDialog::clearLayout()
    if (m_scrollArea)
    {
       foreach (QObject *obj, children())
-         obj->deleteLater();
+         delete obj;
    }
 
    m_layout = new QVBoxLayout();
@@ -707,7 +707,7 @@ void ShaderParamsDialog::onShaderAddPassClicked()
    menu_driver_set_last_shader_pass_dir(pathData);
 #endif
 
-   video_shader_resolve_parameters(NULL, menu_shader);
+   video_shader_resolve_parameters(menu_shader);
 
    command_event(CMD_EVENT_SHADERS_APPLY_CHANGES, NULL);
 }
